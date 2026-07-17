@@ -42,6 +42,10 @@
     }
 
     body {
+        img{
+  max-width:100%;
+  height:auto;
+}
       font-family: var(--font-body);
       background: var(--pastel-gradient);
       color: var(--text-dark);
@@ -194,7 +198,18 @@
     .nav-links a:hover {
       color: #C57388;
     }
+    .menu-toggle{
+  display:none;
+  background:none;
+  border:none;
+  font-size:1.8rem;
+  color:#C57388;
+  cursor:pointer;
+}
 
+.desktop-btn{
+  display:flex;
+}
     /* ==========================================================================
        4. HERO LANDING SECTION WITH FLOATING ANIMATED BEAUTY ELEMENTS
        ========================================================================== */
@@ -685,34 +700,170 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 900px) {
-      .hero { flex-direction: column; text-align: center; padding-top: 140px; }
-      .hero-title { font-size: 3.5rem; }
-      .owner-container { grid-template-columns: 1fr; text-align: center; }
-      .contact-card-grid { grid-template-columns: 1fr; }
-      .sub-service-list { grid-template-columns: 1fr; }
-      .booking-form { grid-template-columns: 1fr; }
-      .form-group.full-width { grid-column: span 1; }
-      .nav-links { display: none; }
-    }
+    @media (max-width:768px){
+
+header{
+padding:15px 5%;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.desktop-btn{
+display:none;
+}
+
+.nav-links{
+position:absolute;
+top:100%;
+left:0;
+width:100%;
+background:white;
+flex-direction:column;
+gap:0;
+display:none;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.nav-links li{
+width:100%;
+}
+
+.nav-links a{
+display:block;
+padding:18px;
+border-bottom:1px solid #eee;
+}
+
+.hero{
+flex-direction:column;
+text-align:center;
+padding:120px 5% 60px;
+}
+
+.hero-title{
+font-size:2.5rem;
+line-height:1.2;
+}
+
+.hero-description{
+font-size:1rem;
+}
+
+.hero-visual{
+margin-top:40px;
+}
+
+.hero-img-frame img{
+height:350px;
+}
+
+.section-title h2{
+font-size:2rem;
+}
+
+.owner-container{
+grid-template-columns:1fr;
+padding:25px;
+text-align:center;
+}
+
+.owner-details h3{
+font-size:2rem;
+}
+
+.contact-card-grid{
+grid-template-columns:1fr;
+}
+
+.services-grid{
+grid-template-columns:1fr;
+}
+
+.booking-box{
+padding:25px;
+}
+
+.booking-form{
+grid-template-columns:1fr;
+}
+
+.form-group.full-width{
+grid-column:span 1;
+}
+
+.btn-luxury,
+.btn-outline-glass{
+width:100%;
+justify-content:center;
+}
+
+.modal-box{
+padding:20px;
+max-height:90vh;
+}
+
+.modal-header h3{
+font-size:1.8rem;
+}
+
+.sub-service-list{
+grid-template-columns:1fr;
+}
+
+footer{
+padding:40px 5%;
+}
+}
+@media (max-width:480px){
+
+.hero-title{
+font-size:2rem;
+}
+
+.hero-tagline{
+font-size:0.75rem;
+}
+
+.hero-description{
+font-size:0.95rem;
+}
+
+.logo{
+font-size:1.5rem;
+}
+}
   </style>
 </head>
 <body>
 
   <!-- NAVIGATION -->
   <header id="navbar">
-    <div class="nav-container">
-      <a href="#" class="logo">Saru's <span>Beauty Parlour</span></a>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about-owner">About Owner</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#why-us">Why Us</a></li>
-        <li><a href="#booking">Book Appointment</a></li>
-      </ul>
-      <a href="#booking" class="btn-luxury">Book Slot</a>
-    </div>
-  </header>
+  <div class="nav-container">
+
+    <a href="#" class="logo">Saru's <span>Beauty Parlour</span></a>
+
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <ul class="nav-links" id="navMenu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about-owner">About Owner</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#booking">Book Appointment</a></li>
+    </ul>
+
+    <a href="#booking" class="btn-luxury desktop-btn">Book Slot</a>
+
+  </div>
+</header>
 
   <!-- HERO LANDING SECTION WITH ANIMATED BEAUTY ELEMENTS -->
   <section class="hero" id="home">
@@ -1104,6 +1255,12 @@
         navbar.classList.remove('scrolled');
       }
     });
+    const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+
+menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+});
   </script>
 </body>
 </html>
